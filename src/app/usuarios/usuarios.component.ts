@@ -15,6 +15,8 @@ export class UsuariosComponent implements OnInit {
   nome = '';
   usuario = '';
   senha = '';
+  id = '';
+  title = 'Inserir Usuário';
 
   constructor( 
     private provider: ApiServiceService,
@@ -45,6 +47,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   cadastrar() {
+    if(this.nome !== '' && this.usuario !== '' && this.senha !== '') {
     return new Promise(resolve => {
       const dados = {
         requisicao : 'add',
@@ -56,11 +59,47 @@ export class UsuariosComponent implements OnInit {
       .subscribe(data => {
 
         if(data['success']){
-         alert('Salvo com sucesso!!');
-        //  location='usuarios';
-        this.router.navigate(['/usuarios']);
+          alert('Salvo com sucesso!!');
+          window.location.href = "usuarios"; 
         }else{
-         alert('Erro ao Salvar!!');
+          alert('Erro ao Salvar!!');
+        }
+
+      });
+    });
+  }else{
+    alert('Prencha os Campos!');
+  }
+  }
+
+  dadosEditar(nome: string, usuario: string, senha: string, id: string){
+    this.title = 'Editar Usuário';
+    this.nome = nome;
+    this.usuario = usuario;
+    this.senha = senha;
+    this.id = id;
+  }
+
+  editar() {
+    return new Promise(resolve => {
+      const dados = {
+        requisicao : 'add',
+        nome: this.nome,
+        usuario: this.usuario,
+        senha: this.senha,
+        id: this.id
+      };
+      this.provider.Api(dados, 'apiUsuarios.php')
+      .subscribe(data => {
+
+        if(data['success']){
+         alert('Editado com sucesso!!');
+         
+        //  location='usuarios';
+        // this.router.navigate(['/usuarios']);
+        window.location.href = "usuarios"; 
+        }else{
+         alert('Erro ao Editar!!');
         }
 
       });
@@ -68,5 +107,25 @@ export class UsuariosComponent implements OnInit {
 
 }
 
+excluir(idu: string) {
+  return new Promise(resolve => {
+      const dados = {
+        requisicao : 'excluir',
+        id: idu
+      };
+      this.provider.Api(dados, 'apiUsuarios.php')
+      .subscribe(data => {
+
+        if(data['success']){
+          alert('Excluido com sucesso!');
+
+          window.location.href = "usuarios"; 
+        }else{
+          alert('Erro ao Excluir!!');
+        }
+
+      });
+    });
+    }
 
 }

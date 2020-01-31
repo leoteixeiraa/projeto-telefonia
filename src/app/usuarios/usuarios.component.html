@@ -17,47 +17,62 @@
         <td>{{dado.usuario}}</td>
         <td>{{dado.senha}}</td>
         <td>
-            <i class="far fa-edit mr-2"></i>
-            <i class="far fa-trash-alt"></i>
-        </td>
-    </tr>
+            <a (click)="dadosEditar(dado.nome, dado.usuario, dado.senha, dado.id)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
+      <a (click)="excluir(dado.id)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
+  </td>
+</tr>
 </table>
 
-<!-- CONTEÚDO DA JANELA MODAL DE INSERIR -->
+</div>
 
-<div id="modal" class="modal fade" tabindex="-1" role="dialog">
+
+
+
+<!--CONTEUDO DA JANELA MODAL DE INSERIR-->
+<div id="modal" class="modal fade" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Inserir Usuário</h5>
+          <h5 class="modal-title">{{title}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-       
+
         <div class="modal-body">
-          
-           
+
+
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Nome</label>
-                  <input type="text" class="form-control" (input)="this.nome = $event.target.value" formControlName="nome" aria-describedby="emailHelp" placeholder="Seu nome" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Usuário</label>
-                    <input type="text" class="form-control" (input)="this.usuario = $event.target.value" formControlName="usuario" aria-describedby="emailHelp" placeholder="Seu nome" required>
+                    <label for="exampleInputEmail1">Nome</label>
+                    <input type="text" class="form-control"
+                    (input)="this.nome = $event.target.value" aria-describedby="emailHelp"
+                    value="{{nome}}" placeholder="Seu nome" required />
+
                   </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Senha</label>
-                  <input type="text" class="form-control" (input)="this.senha = $event.target.value" formControlName="senha" placeholder="Senha" required>
+                  <label for="exampleInputEmail1">Email</label>
+                  <input type="email" class="form-control" (input)="this.usuario = $event.target.value"
+                  value="{{usuario}}"
+                   aria-describedby="emailHelp" placeholder="Seu email" required />
+
                 </div>
-                
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Senha</label>
+                  <input type="text" class="form-control" (input)="this.senha = $event.target.value"
+                  value="{{senha}}"
+                  placeholder="Senha"  required />
+                </div>
+
         </div>
         <div class="modal-footer">
+            <button *ngIf="id === '' " type="button" class="btn btn-primary" (click)="cadastrar()">Salvar</button>
+
+            <button *ngIf="id > 0 " type="button" class="btn btn-primary" (click)="editar()">Editar</button>
+
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-primary" (click)="cadastrar()">Salvar</button>
-        
+
         </div>
-  
+
       </div>
     </div>
   </div>
