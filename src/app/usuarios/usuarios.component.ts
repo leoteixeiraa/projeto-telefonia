@@ -17,6 +17,7 @@ export class UsuariosComponent implements OnInit {
   senha = '';
   id = '';
   title = 'Inserir Usuário';
+  textoBuscar = '';
 
   constructor( 
     private provider: ApiServiceService,
@@ -26,16 +27,19 @@ export class UsuariosComponent implements OnInit {
   ngOnInit() {
     this.lista = [];  
     this.start = 0;
-    this.carregar();
+    this.carregar(this.textoBuscar);
   }
 
 
-  carregar() {
+  carregar(texto : string) {
+    this.lista = [];
+    this.start = 0;
     return new Promise(resolve => {
       const dados = {
         requisicao : 'listar',
         limit : this.limit,
-        start: this.start
+        start: this.start,
+        textoBuscar: texto
       };
       this.provider.Api(dados, 'apiUsuarios.php').subscribe(data => {
         for(const dado of data['result']){
@@ -83,7 +87,7 @@ export class UsuariosComponent implements OnInit {
   editar() {
     return new Promise(resolve => {
       const dados = {
-        requisicao : 'add',
+        requisicao : 'editar',
         nome: this.nome,
         usuario: this.usuario,
         senha: this.senha,
