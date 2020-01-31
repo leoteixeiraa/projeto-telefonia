@@ -3,18 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TelComponenteComponent } from './tel-componente/tel-componente.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiServiceService } from './services/api-service.service';
+import { HttpClient } from '@angular/common/http';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TelComponenteComponent
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiServiceService,
+  HttpClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

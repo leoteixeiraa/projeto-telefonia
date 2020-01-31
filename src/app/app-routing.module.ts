@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TelComponenteComponent } from './tel-componente/tel-componente.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 
 const routes: Routes = [
-  { path: 'meu-componente', component: 
-  TelComponenteComponent }
+  {path: 'usuarios', component: UsuariosComponent}
 ];
 
 @NgModule({
