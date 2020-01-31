@@ -15,6 +15,7 @@ export class LinhasComponent implements OnInit {
   operadora = '';
   num_conta = '';
   cod_acesso = '';
+  localizacao = '';
   id = '';
   title = 'Inserir Linha';
   textoBuscar = '';
@@ -51,13 +52,14 @@ export class LinhasComponent implements OnInit {
   }
 
   cadastrar() {
-    if (this.operadora !== '' && this.cod_acesso !== '' && this.num_conta !== '') {
+    if (this.operadora !== '' && this.cod_acesso !== '' && this.num_conta !== '' && this.localizacao !== '') {
       return new Promise(resolve => {
         const dados2 = {
           requisicao: 'add',
           operadora: this.operadora,
           cod_acesso: this.cod_acesso,
-          num_conta: this.num_conta
+          num_conta: this.num_conta,
+          localizacao: this.localizacao
         };
         this.provider.Api(dados2, 'apiLinhas.php')
           .subscribe(data => {
@@ -76,11 +78,12 @@ export class LinhasComponent implements OnInit {
     }
   }
 
-  dadosEditar(operadora: string, cod_acesso: string, num_conta: string, id: string) {
+  dadosEditar(operadora: string, cod_acesso: string, num_conta: string, localizacao: string, id: string) {
     this.title = 'Editar Linha';
     this.operadora = operadora;
     this.cod_acesso = cod_acesso;
     this.num_conta = num_conta;
+    this.localizacao = localizacao;
     this.id = id;
   }
 
@@ -91,6 +94,7 @@ export class LinhasComponent implements OnInit {
         operadora: this.operadora,
         cod_acesso: this.cod_acesso,
         num_conta: this.num_conta,
+        localizacao: this.localizacao,
         id: this.id
       };
       this.provider.Api(dados2, 'apiLinhas.php')

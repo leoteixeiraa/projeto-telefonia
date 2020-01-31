@@ -26,6 +26,7 @@
         <td><b>Operadora</b></td>
         <td><b>Código Acesso</b></td>
         <td><b>Número da Conta</b></td>
+        <td><b>Localização</b></td>
         <!-- <td><b>Agrupamento</b></td>
         <td><b>ICCID</b></td>
         <td><b>Utilizador</b></td>
@@ -41,6 +42,7 @@
         <td>{{dado2.operadora}}</td>
         <td>{{dado2.cod_acesso}}</td>
         <td>{{dado2.num_conta}}</td>
+        <td>{{dado2.localizacao}}</td>
         <!-- <td>{{dado2.agrupamento}}</td>
         <td>{{dado2.iccid}}</td>
         <td>{{dado2.utilizador}}</td>
@@ -50,7 +52,7 @@
         <td>{{dado2.regional}}</td>
         <td>{{dado2.intrarede_nacional}}</td> -->
         <td>
-            <a (click)="dadosEditar(dado2.operadora, dado2.cod_acesso, dado2.num_conta, dado2.id)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
+            <a (click)="dadosEditar(dado2.operadora, dado2.cod_acesso, dado2.num_conta, dado2.localizacao, dado2.id)" data-toggle="modal" data-target="#modal" title="Editar Registro"><i class="far fa-edit text-info mr-2"></i></a>
       <a (click)="excluir(dado2.id)" title="Excluir Registro"><i class="far fa-trash-alt text-danger"></i></a>
   </td>
 </tr>
@@ -78,17 +80,14 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Operadora</label>
                     <div class="form-group">
-
-    <select (input)="this.operadora = $event.target.value" value="{{operadora}}" class="form-control" placeholder="Operadora">
-      <option>Vivo</option>
-      <option>Oi</option>
-      <option>Tim</option>
-      <option>Claro</option>
-      <option>Nextel</option>
-    </select>
-  </div>
-                    
-
+                        <select (input)="this.operadora = $event.target.value" value="{{operadora}}" class="form-control" placeholder="Operadora">
+                          <option>Vivo</option>
+                          <option>Oi</option>
+                          <option>Tim</option>
+                          <option>Claro</option>
+                          <option>Nextel</option>
+                        </select>
+                      </div>         
                   </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Cod. Acesso</label>
@@ -103,8 +102,25 @@
                   value="{{num_conta}}"
                   placeholder="Número da Conta"  required />
                 </div>
+            <div class="form-group">
+                    <label for="exampleInputEmail1">Localização</label>
+                    <div class="form-group">
+                        <select (input)="this.localizacao = $event.target.value" value="{{localizacao}}" class="form-control" placeholder="Localizacao">
+                          <option>Abdon Batista</option>
+                          <option>AMARP</option>
+                          <option>Arroio Trinta</option>
+                          <option>Brunópolis</option>
+                          <option>CIMCATARINA</option>
+                          <option>Videira</option>
+                          <option>Curitibanos</option>
+                          <option>Dona Emma</option>
+                          <option>Fraiburgo</option>
+                          <option>Frei Rogério</option>
+                          <option>Iomerê</option>
+                        </select>
+                      </div>         
+                  </div>
 
-        </div>
         <div class="modal-footer">
             <button *ngIf="id === '' " type="button" class="btn btn-primary" (click)="cadastrar()">Salvar</button>
 
