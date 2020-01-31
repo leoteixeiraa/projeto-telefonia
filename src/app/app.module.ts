@@ -7,11 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiServiceService } from './services/api-service.service';
 import { HttpClient } from '@angular/common/http';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { LinhasComponent } from './linhas/linhas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    LinhasComponent
   ],
   imports: [
     BrowserModule,
