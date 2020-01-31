@@ -13,7 +13,7 @@ export class UsuariosComponent implements OnInit {
   limit = 10;
   start = 0;
   nome = '';
-  email = '';
+  usuario = '';
   senha = '';
 
   constructor( 
@@ -40,8 +40,33 @@ export class UsuariosComponent implements OnInit {
           this.lista.push(dado);
         }
         resolve(true);
-      })
-    })
+      });
+    });
   }
+
+  cadastrar() {
+    return new Promise(resolve => {
+      const dados = {
+        requisicao : 'add',
+        nome: this.nome,
+        usuario: this.usuario,
+        senha: this.senha
+      };
+      this.provider.Api(dados, 'apiUsuarios.php')
+      .subscribe(data => {
+
+        if(data['success']){
+         alert('Salvo com sucesso!!');
+        //  location='usuarios';
+        this.router.navigate(['/usuarios']);
+        }else{
+         alert('Erro ao Salvar!!');
+        }
+
+      });
+    });
+
+}
+
 
 }
