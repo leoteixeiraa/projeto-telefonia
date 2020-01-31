@@ -77,9 +77,17 @@
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Operadora</label>
-                    <input type="text" class="form-control"
-                    (input)="this.operadora = $event.target.value" aria-describedby="emailHelp"
-                    value="{{operadora}}" placeholder="Operadora" required />
+                    <div class="form-group">
+
+    <select (input)="this.operadora = $event.target.value" value="{{operadora}}" class="form-control" placeholder="Operadora">
+      <option>Vivo</option>
+      <option>Oi</option>
+      <option>Tim</option>
+      <option>Claro</option>
+      <option>Nextel</option>
+    </select>
+  </div>
+                    
 
                   </div>
                 <div class="form-group">
